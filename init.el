@@ -55,3 +55,13 @@
 ;; which-key
 (use-package which-key :ensure t)
 (which-key-mode)
+
+;; windmove
+(use-package windmove :ensure t)
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
+
+;; dimmer
+(use-package dimmer :ensure t)
+(setq dimmer-fraction 0.4)
+(dimmer-mode t)
