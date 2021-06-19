@@ -76,3 +76,6 @@
 ;; treemacs
 (use-package treemacs :ensure t :config (treemacs))
 (use-package treemacs-projectile :ensure t :requires (treemacs projectile))
+
+;; magit
+(use-package magit :ensure t)
