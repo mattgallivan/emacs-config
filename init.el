@@ -1,6 +1,30 @@
 ;; init.el requires use-package: https://github.com/jwiegley/use-package
+;; eglot requires clangd to be installed
+
+;; - - - - - - - - - -
+;; Basic Configuration
+;; - - - - - - - - - -
 
 (setq inhibit-startup-screen t)  ;; Hide the startup screen
+
+;; Remove the *scratch* and *messages* buffer.
+;;
+;; Makes *scratch* empty.
+(setq initial-scratch-message "")
+
+;; Removes *scratch* from buffer after the mode has been set.
+(defun remove-scratch-buffer ()
+  (if (get-buffer "*scratch*")
+      (kill-buffer "*scratch*")))
+(add-hook 'after-change-major-mode-hook 'remove-scratch-buffer)
+
+;; Removes *messages* from buffer.
+(setq-default message-log-max nil)
+(kill-buffer "*Messages*")
+
+;; - - - - - - - - - -
+;; Packages
+;; - - - - - - - - - -
 
 ;; melpa
 (require 'package)
@@ -79,3 +103,11 @@
 
 ;; magit
 (use-package magit :ensure t)
+
+;; eglot
+(use-package eglot :ensure t)
+(add-hook 'c-mode-hook 'eglot-ensure)
+
+;; company
+(use-package company :ensure t)
+(add-hook 'after-init-hook 'global-company-mode)
