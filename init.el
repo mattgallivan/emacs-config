@@ -1,5 +1,7 @@
 ;; init.el requires use-package: https://github.com/jwiegley/use-package
 
+(setq inhibit-startup-screen t)  ;; Hide the startup screen
+
 ;; melpa
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -65,3 +67,12 @@
 (use-package dimmer :ensure t)
 (setq dimmer-fraction 0.4)
 (dimmer-mode t)
+
+;; projectile
+(use-package projectile :ensure t)
+(projectile-mode 1)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
+;; treemacs
+(use-package treemacs :ensure t :config (treemacs))
+(use-package treemacs-projectile :ensure t :requires (treemacs projectile))
