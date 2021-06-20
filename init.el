@@ -111,3 +111,7 @@
 ;; company
 (use-package company :ensure t)
 (add-hook 'after-init-hook 'global-company-mode)
+
+;; eldoc-box
+(use-package eldoc-box :ensure t)
+(add-hook 'eglot--managed-mode-hook #'eldoc-box-hover-at-point-mode t)
