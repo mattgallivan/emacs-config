@@ -115,3 +115,7 @@
 ;; eldoc-box
 (use-package eldoc-box :ensure t)
 (add-hook 'eglot--managed-mode-hook #'eldoc-box-hover-at-point-mode t)
+
+;; yasnippet
+(use-package yasnippet :ensure t :config (yas-global-mode 1))
+(use-package yasnippet-snippets :ensure t :requires (yasnippet))
