@@ -1,5 +1,7 @@
 ;; init.el requires use-package: https://github.com/jwiegley/use-package
-;; eglot requires clangd to be installed
+;;
+;; eglot requires clangd (.c files) and digestif (.tex files) to be installed
+;; as executables in the shell
 
 ;; - - - - - - - - - -
 ;; Basic Configuration
@@ -119,3 +121,14 @@
 ;; yasnippet
 (use-package yasnippet :ensure t :config (yas-global-mode 1))
 (use-package yasnippet-snippets :ensure t :requires (yasnippet))
+
+;; auctex
+(use-package tex :ensure auctex)
+
+;; magic-latex-buffer
+(use-package magic-latex-buffer
+  :ensure t
+  :hook LaTeX-mode)
+
+;; flyspell-mode
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
