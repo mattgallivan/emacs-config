@@ -1,7 +1,8 @@
 ;; init.el requires use-package: https://github.com/jwiegley/use-package
 ;;
-;; eglot requires clangd (.c files) and digestif (.tex files) to be installed
-;; as executables in the shell
+;; Requirements
+;; ----------
+;; C: clangd, digestif
 
 ;; - - - - - - - - - -
 ;; Basic Configuration
@@ -132,3 +133,14 @@
 
 ;; flyspell-mode
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+
+;; pdf-tools
+(use-package pdf-tools
+  :ensure t
+  :requires (tex)
+  :config (pdf-tools-install)
+  :init
+  (setq TeX-view-program-selection '((output-pdf "PDF Tools")))
+  (setq TeX-source-correlate-start-server t)
+  (setq TeX-save-query nil)
+  :hook (TeX-after-compilation-finished-hook . TeX-revert-document-buffer))
